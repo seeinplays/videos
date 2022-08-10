@@ -10,9 +10,11 @@ export const schema = gql`
     NoHear
     NoSee
     NoSpeak
+    Poop
     PrayerHands
     Rocket
     Rofl
+    RussianDoll
     Smiling
     Thinking
     ThumbsUp
