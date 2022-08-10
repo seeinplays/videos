@@ -9,7 +9,7 @@ function NavItem({ to = null, onClick = null, children }) {
   const location = useLocation()
   const active = location === to
   return (
-    <li className={classnames('mr-4 inline text-xl', { 'font-bold': active })}>
+    <li className={classnames('mr-4 inline text-xl', 'font-bold')}>
       {to ? (
         <Link to={to}>{children}</Link>
       ) : (
