@@ -23,8 +23,8 @@ const NewVideo = () => {
     },
   })
 
-  const onSave = ({ input: { title, url, description } }) => {
-    createVideo({ variables: { input: { title, url, description } } })
+  const onSave = ({ input: { title, url, description, imageUrl } }) => {
+    createVideo({ variables: { input: { title, url, description, imageUrl } } })
   }
 
   return (

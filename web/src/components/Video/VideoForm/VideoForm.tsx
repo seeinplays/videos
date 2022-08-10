@@ -60,6 +60,24 @@ const VideoForm = ({ video = null, error, onSave, loading }) => {
         <FieldError name="url" className="rw-field-error" />
 
         <Label
+          name="imageUrl"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Image Url
+        </Label>
+
+        <TextField
+          name="imageUrl"
+          defaultValue={video?.imageUrl}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="imageUrl" className="rw-field-error" />
+
+        <Label
           name="description"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
