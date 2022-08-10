@@ -64,7 +64,7 @@ You may find it helpful to open two browsers / browser sessions so you can log i
 - [ ] The [edit and delete buttons](./web/src/components/Video/Video/Video.tsx#L70-L78) on the video page are different heights
 
 ## 2. Features
-- [ ] There is a commented out `imageUrl String?` field on the `Video` schema [model](./api/db/schema.prisma#L30). Uncomment that, run `yarn db:migrate`, and then add support for passing it to the `createVideo` and `updateVideo` mutations. Request the `imageUrl` field on the `/videos` [page](https://github.com/myria-us/videos/blob/main/web/src/components/Video/VideosCell/VideosCell.tsx#L8-L21) so you can display it as the video thumbnail when it has been set on a video
+- [ ] There is a commented out `imageUrl String?` field on the `Video` schema [model](./api/db/schema.prisma#L30). Uncomment that, run `yarn migrate`, and then add support for passing it to the `createVideo` and `updateVideo` mutations. Request the `imageUrl` field on the `/videos` [page](https://github.com/myria-us/videos/blob/main/web/src/components/Video/VideosCell/VideosCell.tsx#L8-L21) so you can display it as the video thumbnail when it has been set on a video
 - [ ] Add additional [ReactionType](https://github.com/myria-us/videos/blob/main/api/src/graphql/schema.sdl.ts#L2-L20) emoji(s).
 - [ ] Add support for showing all the videos uploaded by a given user using a query param i.e. `/videos?userId=1` or on a dedicated page i.e. `/user/1`
 - [ ] Add support for showing all the videos with a given reaction using a query param i.e `/videos?reaction=Rofl` or on a dedicated page i.e. `/reaction/Rofl`
