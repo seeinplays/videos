@@ -49,6 +49,7 @@ const Video = ({ video }) => {
 
   const onDeleteClick = (id) => {
     if (confirm(`Are you sure you want to delete video ${id}?`)) {
+      console.log('in deleteVideo')
       deleteVideo({ variables: { id } })
     }
   }
@@ -68,7 +69,12 @@ const Video = ({ video }) => {
       <Reactions className="mt-4" video={video} onClick={onReactionClick} />
       {isCurrentUser && (
         <div className="mt-4">
-          <Button to={routes.editVideo({ id: video.id })}>Edit</Button>
+          <Button
+            className="inline-flex"
+            to={routes.editVideo({ id: video.id })}
+          >
+            Edit
+          </Button>
           <Button
             className="ml-2 bg-red-500"
             onClick={() => onDeleteClick(video.id)}
