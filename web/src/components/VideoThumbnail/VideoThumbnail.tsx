@@ -7,7 +7,10 @@ const VideoThumbnail = ({ width = 480, height = 360, video }) => {
   return (
     <div className="bg-black" style={{ width, height }}>
       {id ? (
-        <img alt={video.title} src={video.imageUrl} />
+        <img
+          alt={video.title}
+          src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+        />
       ) : (
         <div>Video url ${video.url} is not supported</div>
       )}
