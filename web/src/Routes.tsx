@@ -19,6 +19,7 @@ const Routes = () => {
         <Route path="/videos/new" page={VideoNewVideoPage} name="newVideo" />
         <Route path="/videos/{id:Int}/edit" page={VideoEditVideoPage} name="editVideo" />
         <Route path="/videos/{id:Int}" page={VideoVideoPage} name="video" />
+        <Route path="/videos/user/{id:Int}" page={VideoUserPage} name="user" />
         <Route path="/videos" page={VideoVideosPage} name="videos" />
       </Private>
       <Set wrap={SignedOutLayout}>

@@ -31,6 +31,7 @@ const Nav = () => {
   return (
     <ul>
       <NavItem to={routes.videos()}>Videos</NavItem>
+      <NavItem to={routes.user({ id: user.id })}>My Videos</NavItem>
       <NavItem to={routes.newVideo()}>Add Video</NavItem>
       <NavItem onClick={logout}>Log out ({user.email})</NavItem>
     </ul>
