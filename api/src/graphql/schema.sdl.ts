@@ -10,9 +10,11 @@ export const schema = gql`
     NoHear
     NoSee
     NoSpeak
+    Poop
     PrayerHands
     Rocket
     Rofl
+    RussianDoll
     Smiling
     Thinking
     ThumbsUp
@@ -36,10 +38,12 @@ export const schema = gql`
     url: String!
     title: String!
     description: String
+    imageUrl: String
     createdAt: DateTime!
     updatedAt: DateTime!
     user: User!
-    reactions: [Reaction]!
+    reactions: [Reaction!]!
+    comments: [Comment!]!
   }
 
   type Reaction {
@@ -47,6 +51,16 @@ export const schema = gql`
     userId: Int!
     videoId: Int!
     type: ReactionType!
+    createdAt: DateTime!
+    video: Video!
+    user: User!
+  }
+
+  type Comment {
+    id: Int!
+    userId: Int!
+    videoId: Int!
+    comment: String!
     createdAt: DateTime!
     video: Video!
     user: User!
@@ -61,18 +75,26 @@ export const schema = gql`
     url: String!
     title: String!
     description: String
+    imageUrl: String!
+  }
+
+  input CreateCommentInput {
+    comment: String!
+    videoId: Int!
   }
 
   input UpdateVideoInput {
     url: String
     title: String
     description: String
+    imageUrl: String
   }
 
   type Mutation {
     createVideo(input: CreateVideoInput!): Video! @requireAuth
     updateVideo(id: Int!, input: UpdateVideoInput!): Video! @requireAuth
     reactToVideo(id: Int!, type: ReactionType!): Video! @requireAuth
+    createComment(input: CreateCommentInput!): Comment! @requireAuth
     deleteVideo(id: Int!): Video! @requireAuth
   }
 `

@@ -3,6 +3,7 @@ import type {
   MutationResolvers,
   UserResolvers,
   ReactionResolvers,
+  CommentResolvers,
   VideoResolvers,
 } from 'types/graphql'
 
@@ -31,6 +32,18 @@ export const createVideo: MutationResolvers['createVideo'] = (
   { context }
 ) => {
   return db.video.create({
+    data: {
+      ...input,
+      userId: context.currentUser.id,
+    },
+  })
+}
+
+export const createComment: MutationResolvers['createComment'] = (
+  { input },
+  { context }
+) => {
+  return db.comment.create({
     data: {
       ...input,
       userId: context.currentUser.id,
@@ -87,7 +100,9 @@ export const reactToVideo: MutationResolvers['reactToVideo'] = async (
 }
 
 export const deleteVideo: MutationResolvers['deleteVideo'] = ({ id }) => {
-  return db.video.delete(id)
+  return db.video.delete({
+    where: { id },
+  })
 }
 
 export const User: UserResolvers = {
@@ -100,10 +115,17 @@ export const User: UserResolvers = {
 export const Video: VideoResolvers = {
   reactions: (_args, { root }) =>
     db.reaction.findMany({ where: { videoId: root.id } }),
+  comments: (_args, { root }) =>
+    db.comment.findMany({ where: { videoId: root.id } }),
   user: (_args, { root }) => findById({ table: db.user, id: root.userId }),
 }
 
 export const Reaction: ReactionResolvers = {
+  video: (_args, { root }) => findById({ table: db.video, id: root.videoId }),
+  user: (_args, { root }) => findById({ table: db.user, id: root.userId }),
+}
+
+export const Comment: CommentResolvers = {
   video: (_args, { root }) => findById({ table: db.video, id: root.videoId }),
   user: (_args, { root }) => findById({ table: db.user, id: root.userId }),
 }

@@ -9,7 +9,7 @@ function NavItem({ to = null, onClick = null, children }) {
   const location = useLocation()
   const active = location === to
   return (
-    <li className={classnames('mr-4 inline text-xl', { 'font-bold': active })}>
+    <li className={classnames('mr-4 inline text-xl', 'font-bold')}>
       {to ? (
         <Link to={to}>{children}</Link>
       ) : (
@@ -31,6 +31,7 @@ const Nav = () => {
   return (
     <ul>
       <NavItem to={routes.videos()}>Videos</NavItem>
+      <NavItem to={routes.user({ id: user.id })}>My Videos</NavItem>
       <NavItem to={routes.newVideo()}>Add Video</NavItem>
       <NavItem onClick={logout}>Log out ({user.email})</NavItem>
     </ul>

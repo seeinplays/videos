@@ -3,6 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import Button from 'src/components/Button'
+import Comments from 'src/components/Comments/Comments'
 import Reactions from 'src/components/Reactions'
 import Time from 'src/components/Time'
 import VideoEmbed from 'src/components/VideoEmbed'
@@ -49,6 +50,7 @@ const Video = ({ video }) => {
 
   const onDeleteClick = (id) => {
     if (confirm(`Are you sure you want to delete video ${id}?`)) {
+      console.log('in deleteVideo')
       deleteVideo({ variables: { id } })
     }
   }
@@ -66,9 +68,15 @@ const Video = ({ video }) => {
         Posted by {video.user.email} on <Time datetime={video.createdAt} />
       </div>
       <Reactions className="mt-4" video={video} onClick={onReactionClick} />
+      <Comments video={video} />
       {isCurrentUser && (
         <div className="mt-4">
-          <Button to={routes.editVideo({ id: video.id })}>Edit</Button>
+          <Button
+            className="inline-flex"
+            to={routes.editVideo({ id: video.id })}
+          >
+            Edit
+          </Button>
           <Button
             className="ml-2 bg-red-500"
             onClick={() => onDeleteClick(video.id)}

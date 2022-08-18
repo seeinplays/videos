@@ -11,6 +11,7 @@ export const QUERY = gql`
       url
       title
       description
+      imageUrl
       createdAt
       user {
         id
@@ -19,6 +20,14 @@ export const QUERY = gql`
       reactions {
         id
         type
+        user {
+          id
+          email
+        }
+      }
+      comments {
+        id
+        comment
         user {
           id
           email
