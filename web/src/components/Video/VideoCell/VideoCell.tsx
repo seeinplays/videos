@@ -25,6 +25,14 @@ export const QUERY = gql`
           email
         }
       }
+      comments {
+        id
+        comment
+        user {
+          id
+          email
+        }
+      }
     }
   }
 `

@@ -19,6 +19,7 @@ model User {
   updatedAt           DateTime   @updatedAt
   videos              Video[]    @relation("Video_userId")
   reactions           Reaction[] @relation("Reaction_userId")
+  comments            Comment[]  @relation("Comment_userId")
 }
 
 model Video {
@@ -32,6 +33,7 @@ model Video {
   updatedAt   DateTime   @updatedAt
   user        User       @relation("Video_userId", fields: [userId], references: [id])
   reactions   Reaction[] @relation("Reaction_videoId")
+  comments    Comment[]  @relation("Comment_videoId")
 }
 
 model Reaction {
@@ -42,4 +44,14 @@ model Reaction {
   createdAt DateTime @default(now())
   user      User     @relation("Reaction_userId", fields: [userId], references: [id])
   video     Video    @relation("Reaction_videoId", fields: [videoId], references: [id])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  videoId   Int
+  comment      String
+  createdAt DateTime @default(now())
+  user      User     @relation("Comment_userId", fields: [userId], references: [id])
+  video     Video    @relation("Comment_videoId", fields: [videoId], references: [id])
 }

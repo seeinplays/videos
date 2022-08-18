@@ -3,6 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import Button from 'src/components/Button'
+import Comments from 'src/components/Comments/Comments'
 import Reactions from 'src/components/Reactions'
 import Time from 'src/components/Time'
 import VideoEmbed from 'src/components/VideoEmbed'
@@ -67,6 +68,7 @@ const Video = ({ video }) => {
         Posted by {video.user.email} on <Time datetime={video.createdAt} />
       </div>
       <Reactions className="mt-4" video={video} onClick={onReactionClick} />
+      <Comments video={video} />
       {isCurrentUser && (
         <div className="mt-4">
           <Button

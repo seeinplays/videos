@@ -42,7 +42,8 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     user: User!
-    reactions: [Reaction]!
+    reactions: [Reaction!]!
+    comments: [Comment!]!
   }
 
   type Reaction {
@@ -50,6 +51,16 @@ export const schema = gql`
     userId: Int!
     videoId: Int!
     type: ReactionType!
+    createdAt: DateTime!
+    video: Video!
+    user: User!
+  }
+
+  type Comment {
+    id: Int!
+    userId: Int!
+    videoId: Int!
+    comment: String!
     createdAt: DateTime!
     video: Video!
     user: User!
@@ -67,6 +78,11 @@ export const schema = gql`
     imageUrl: String!
   }
 
+  input CreateCommentInput {
+    comment: String!
+    videoId: Int!
+  }
+
   input UpdateVideoInput {
     url: String
     title: String
@@ -78,6 +94,7 @@ export const schema = gql`
     createVideo(input: CreateVideoInput!): Video! @requireAuth
     updateVideo(id: Int!, input: UpdateVideoInput!): Video! @requireAuth
     reactToVideo(id: Int!, type: ReactionType!): Video! @requireAuth
+    createComment(input: CreateCommentInput!): Comment! @requireAuth
     deleteVideo(id: Int!): Video! @requireAuth
   }
 `
